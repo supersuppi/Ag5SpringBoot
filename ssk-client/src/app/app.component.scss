@@ -1,0 +1,24 @@
+$bar_bg_color : #343a40!important;
+
+.container-main {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.container-footer {
+   //color 
+    background-color:$bar_bg_color;
+    // footer thickness
+    padding-top: 15px;
+    padding-bottom: 15px; 
+}
+
+/* Underline text on hover */
+li:hover {
+    text-decoration: underline;
+}
+
+.heading {
+    margin-bottom: 20px;
+}
+

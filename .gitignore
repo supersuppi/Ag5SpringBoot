@@ -1,0 +1,6 @@
+ssk-client/node_modules
+
+ssk-server/.mnv
+ssk-server/.settings
+ssk-server/target
+ssk-server/.project
