@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, NgForm } from '@angular/forms';
 
+import { Router } from '@angular/router';
+
 import { RegistrationService } from '../services/register.service';
 
 @Component({
@@ -12,7 +14,7 @@ import { RegistrationService } from '../services/register.service';
 export class RegisterComponent implements OnInit {
   private regForm: FormGroup;
 
-  constructor(private regService:RegistrationService) { }
+  constructor(private regService:RegistrationService,private router:Router) { }
 
   ngOnInit() {
     // Each will create new Form control.
@@ -34,12 +36,15 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(sampleForm: NgForm) {
     this.regService.resgisterAPICall(this.regForm.value)
-    .subscribe( book => { console.log('Registration Successfull');},
-                error => {console.log("Registration Failed with ERROR :"+error) } 
-              );
-    
-    // console.log('Form successful submit.');
-    // console.log(this.regForm.value);
+    .subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(["/home"]); 
+      },
+      err => {
+        console.log("Error occured while registering user.");
+      }
+    );
   }
 
 }
