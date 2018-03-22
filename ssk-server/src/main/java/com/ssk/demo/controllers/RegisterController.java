@@ -10,16 +10,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssk.demo.dto.RegistrationDTO;
+import com.ssk.demo.entity.User;
+
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping({"/register"})
-public class RegisterController {
+public class RegisterController extends BaseController {
 	
 	@PostMapping
-	public BodyBuilder registerUser(@RequestBody String payload) {
+	public ResponseEntity<?> registerUser(@RequestBody User payload) {
 		 
-		System.out.println(payload);
+		//User user = payload.getUser();
+		
+		System.out.println(payload.getEmail());
 		 
-		 return ResponseEntity.ok();
+		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
+	
 }
