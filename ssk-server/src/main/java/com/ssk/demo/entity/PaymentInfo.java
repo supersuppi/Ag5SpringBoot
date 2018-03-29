@@ -17,7 +17,7 @@ public class PaymentInfo {
 	private String cardExpDate;
 	
 	@OneToOne(mappedBy = "payment")
-	private User user;
+	private ApplicationUser user;
 	
 	public String getCardNumber() {
 		return cardNumber;
@@ -31,10 +31,10 @@ public class PaymentInfo {
 	public void setCardExpDate(String cardExpDate) {
 		this.cardExpDate = cardExpDate;
 	}
-	public User getUser() {
+	public ApplicationUser getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(ApplicationUser user) {
 		this.user = user;
 	}
 	

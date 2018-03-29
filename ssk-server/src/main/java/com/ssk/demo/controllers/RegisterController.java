@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssk.demo.entity.User;
+import com.ssk.demo.entity.ApplicationUser;
 import com.ssk.demo.service.RegistrationService;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -21,10 +21,10 @@ public class RegisterController extends BaseController {
 	RegistrationService regService;
 	
 	@PostMapping
-	public ResponseEntity<?> registerUser(@RequestBody User payload) {
+	public ResponseEntity<?> registerUser(@RequestBody ApplicationUser payload) {
 		logger.info("Register User -", payload.getEmail());
 		
-		User user = regService.register(payload);
+		ApplicationUser user = regService.register(payload);
 		
 		if (user == null) {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

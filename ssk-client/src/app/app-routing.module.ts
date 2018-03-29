@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';     // Add this
-import { AboutComponent } from './about/about.component';
+import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';  // Add this
 
@@ -13,8 +13,8 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'about', pathMatch: 'full',
-    component: AboutComponent
+    path: 'product', pathMatch: 'full',
+    component: ProductComponent
   },
   {
     path: 'register', pathMatch: 'full',

@@ -10,20 +10,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProductComponent } from './product/product.component';
 
-import { RegistrationService } from './services/register.service';
-import { ToastNotificationService } from './services/toast-notification.service';
+//Import services
+import { ToastNotificationService, AuthenticationService, RegistrationService } from './services/index';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +34,11 @@ import { ToastNotificationService } from './services/toast-notification.service'
     ToastModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [RegistrationService,ToastNotificationService],
+  providers: [
+    RegistrationService,
+    ToastNotificationService, 
+    AuthenticationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

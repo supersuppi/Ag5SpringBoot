@@ -2,9 +2,9 @@ package com.ssk.demo.service;
 
 import java.util.List;
 
-import com.ssk.demo.entity.User;
+import com.ssk.demo.entity.ApplicationUser;
 
 public interface RegistrationService {
-	User register(User user);
-	List<User> getAllUser();
+	ApplicationUser register(ApplicationUser user);
+	List<ApplicationUser> getAllUser();
 }

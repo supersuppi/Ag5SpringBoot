@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 //@JsonIgnoreProperties(value = {"password", "updatedAt"}, allowGetters = true)
-public class User implements Serializable {
+public class ApplicationUser implements Serializable {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
