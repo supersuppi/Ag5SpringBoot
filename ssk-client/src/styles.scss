@@ -1,11 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Anton|Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
 .body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-.h1 {
-    font-family: 'Anton', sans-serif;
+.page-header {
+    margin: 50px;
+    padding-top: 18px;
+    border-bottom: 1px solid #aaa;
+    font-family: 'Indie Flower', cursive;
 }
 
