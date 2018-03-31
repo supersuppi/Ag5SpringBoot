@@ -14,8 +14,14 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductComponent } from './product/product.component';
 
+//Import gaurds
+import { AuthGuard } from './gaurds/auth.gaurd';
+
 //Import services
 import { ToastNotificationService, AuthenticationService, RegistrationService } from './services/index';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminDashboardComponent } from './dashboard/admin/admindashboard.component';
+import { UserDashboardComponent } from './dashboard/user/userdashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,10 @@ import { ToastNotificationService, AuthenticationService, RegistrationService } 
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ProductComponent
+    ProductComponent,
+    DashboardComponent,
+    AdminDashboardComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +46,8 @@ import { ToastNotificationService, AuthenticationService, RegistrationService } 
   providers: [
     RegistrationService,
     ToastNotificationService, 
-    AuthenticationService
+    AuthenticationService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

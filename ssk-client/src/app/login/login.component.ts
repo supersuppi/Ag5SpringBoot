@@ -23,18 +23,17 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
         // reset login status
         this.authenticationService.logout();
- 
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     login() {
       this.loading = true;
       this.authenticationService.login(this.model.email, this.model.password)
-          .subscribe(
-              data => {
-                  this.router.navigate([this.returnUrl]);
-              },
+            .subscribe((res:Response) => {
+              localStorage.setItem('token', res.headers.get("Authorization"));
+              localStorage.setItem('loggedin', "true");
+              // redirect to dashboard
+              this.router.navigate(['/dashboard']);
+            },
               error => {
                   this.alertService.showError(error);
                   this.loading = false;
