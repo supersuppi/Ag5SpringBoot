@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import "rxjs/add/operator/takeUntil";
+import { Subject } from "rxjs/Subject";
+
 import { ToastNotificationService, AuthenticationService } from '../services/index';
+
+import { User} from '../models/user';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +15,9 @@ import { ToastNotificationService, AuthenticationService } from '../services/ind
 })
 export class LoginComponent implements OnInit {
 
-  model: any = {};
-  loading = false;
-  returnUrl: string;
+  private model: any = {};
+  private loading = false;
+  private unsubscribe: Subject<void> = new Subject();
 
   constructor(
     private route: ActivatedRoute,
@@ -25,19 +30,36 @@ export class LoginComponent implements OnInit {
         this.authenticationService.logout();
     }
 
-    login() {
+  login() {
       this.loading = true;
       this.authenticationService.login(this.model.email, this.model.password)
-            .subscribe((res:Response) => {
-              localStorage.setItem('token', res.headers.get("Authorization"));
-              localStorage.setItem('loggedin', "true");
-              // redirect to dashboard
-              this.router.navigate(['/dashboard']);
+            .takeUntil(this.unsubscribe) // to unsbuscribe when done
+            .subscribe((user:User) => {
+              this.handleSuccess(user);
             },
-              error => {
-                  this.alertService.showError(error);
-                  this.loading = false;
-              });
+            error => {
+                this.alertService.showError('Login failed');
+                console.log(error);
+                this.loading = false;
+            });
   }
+
+  private handleSuccess (user:User) {
+    this.alertService.showSuccess('Login sucsess. Welcome '+user.username);
+    
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('loggedin', "true");
+    //let app:User = JSON.parse(localStorage.getItem('user'));
+
+    // redirect to dashboard
+    this.router.navigate(['/dashboard']);
+    this.loading = false;
+  }
+
+  //IMPORTANT: to avoid memory leak
+  OnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+}  
 
 }

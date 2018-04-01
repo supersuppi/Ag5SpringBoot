@@ -1,7 +1,7 @@
 package com.ssk.demo.repository;
 
-import com.ssk.demo.entity.ApplicationUser;
+import com.ssk.demo.entity.User;
 
 public interface UserRepositoryCustom {
-	ApplicationUser findByUserEmail(String email);
+	User findByUserEmail(String email);
 }

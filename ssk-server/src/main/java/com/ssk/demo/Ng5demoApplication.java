@@ -12,7 +12,8 @@ public class Ng5demoApplication {
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Ng5demoApplication.class, args);
 	}

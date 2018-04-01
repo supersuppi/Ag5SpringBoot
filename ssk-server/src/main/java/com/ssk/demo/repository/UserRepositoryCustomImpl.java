@@ -6,7 +6,7 @@ import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssk.demo.entity.ApplicationUser;
+import com.ssk.demo.entity.User;
 
 public class UserRepositoryCustomImpl implements UserRepositoryCustom {
 
@@ -15,10 +15,10 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
 	
 	@Transactional(readOnly = true)
 	@Override
-	public ApplicationUser findByUserEmail(String email) {
-		 Query query = entityManager.createNativeQuery("SELECT * FROM USER WHERE EMAIL = ?", ApplicationUser.class);
+	public User findByUserEmail(String email) {
+		 Query query = entityManager.createNativeQuery("SELECT * FROM USERS WHERE EMAIL = ?", User.class);
 	        query.setParameter(1, email);
-	        return (ApplicationUser) query.getSingleResult();
+	        return (User) query.getSingleResult();
 	}
 
 }
