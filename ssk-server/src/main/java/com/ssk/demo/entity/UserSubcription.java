@@ -17,7 +17,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class UserLicense {
+public class UserSubcription {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -29,11 +29,15 @@ public class UserLicense {
 	private User userID;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "LICENSE_ID")
-	private License lisenseID;
+    @JoinColumn(name = "PACKAGE_ID")
+	private SPackage packageID;
 	
 	@Temporal(TemporalType.DATE)
     @Column(name = "PURCHASE_DATE")
 	private Date purchaseDate;
+	
+	@Temporal(TemporalType.DATE)
+    @Column(name = "EXPIRY_DATE")
+	private Date expiryDate;
 
 }

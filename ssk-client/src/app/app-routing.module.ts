@@ -9,7 +9,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminDashboardComponent } from './dashboard/admin/admindashboard.component';
 import { UserDashboardComponent } from './dashboard/user/userdashboard.component';
 
-import { AuthGuard } from './gaurds/auth.gaurd';
+import { AuthGuardAdmin } from './gaurds/auth.admin.gaurd';
+import { AuthGuardUser } from './gaurds/auth.user.gaurd';
+import { AuthGuardLogin } from './gaurds/auth.login.gaurd';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,15 +34,17 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuardLogin],
     children: [ 
 	    {
 	       path: 'user',
-	       component: UserDashboardComponent
+         component: UserDashboardComponent,
+         canActivate: [AuthGuardUser]
 	    },
 	    {
 	       path: 'admin',
-	       component: AdminDashboardComponent
+         component: AdminDashboardComponent,
+         canActivate: [AuthGuardAdmin]
 	     }	
 	   ]
   }

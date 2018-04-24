@@ -1,12 +1,7 @@
 package com.ssk.demo.security;
 
-import static com.ssk.demo.security.SecurityConstants.EXPIRATION_TIME;
-import static com.ssk.demo.security.SecurityConstants.HEADER_STRING;
-import static com.ssk.demo.security.SecurityConstants.SECRET;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,9 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssk.demo.dto.LoginDTO;
 import com.ssk.demo.entity.User;
-
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.ssk.demo.utils.JWTHelper;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	private AuthenticationManager authenticationManager;
@@ -63,11 +56,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	}
 	
 	private LoginDTO handleSuccess(User appUser) {
-		String token = Jwts.builder()
-				.setSubject(appUser.getUsername())
-				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-				.signWith(SignatureAlgorithm.HS512, SECRET.getBytes())
-				.compact();
+
+		String token = JWTHelper.createJWT(appUser.getUsername());
 
 		LoginDTO login = null;
 		

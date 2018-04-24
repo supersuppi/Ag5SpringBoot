@@ -49,11 +49,16 @@ export class LoginComponent implements OnInit {
     
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('loggedin', "true");
-    //let app:User = JSON.parse(localStorage.getItem('user'));
 
     // redirect to dashboard
-    this.router.navigate(['/dashboard']);
-    this.loading = false;
+    if (user.role === 'USER') {
+      this.router.navigate(['/dashboard/user']);
+      this.loading = false;
+    } else {
+      this.router.navigate(['/dashboard/admin']);
+      this.loading = false;
+    }
+   
   }
 
   //IMPORTANT: to avoid memory leak

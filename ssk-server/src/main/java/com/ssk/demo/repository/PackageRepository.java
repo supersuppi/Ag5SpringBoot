@@ -1,0 +1,10 @@
+package com.ssk.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.ssk.demo.entity.SPackage;
+
+@Repository
+public interface PackageRepository extends JpaRepository<SPackage, Long> {
+}

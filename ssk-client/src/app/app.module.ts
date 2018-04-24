@@ -16,7 +16,9 @@ import { RegisterComponent } from './register/register.component';
 import { ProductComponent } from './product/product.component';
 
 //Import gaurds
-import { AuthGuard } from './gaurds/auth.gaurd';
+import { AuthGuardAdmin } from './gaurds/auth.admin.gaurd';
+import { AuthGuardLogin } from './gaurds/auth.login.gaurd';
+import { AuthGuardUser } from './gaurds/auth.user.gaurd';
 
 //Import services
 import { ToastNotificationService, AuthenticationService, RegistrationService } from './services/index';
@@ -48,7 +50,9 @@ import { UserDashboardComponent } from './dashboard/user/userdashboard.component
     RegistrationService,
     ToastNotificationService, 
     AuthenticationService,
-    AuthGuard
+    AuthGuardAdmin,
+    AuthGuardLogin,
+    AuthGuardUser
   ],
   bootstrap: [AppComponent]
 })
