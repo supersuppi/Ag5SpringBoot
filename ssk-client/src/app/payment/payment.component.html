@@ -1,0 +1,39 @@
+<div class="page-header">
+    <h1>Secured Payment</h1>      
+</div>
+
+<div class="container">
+
+  <form class="form-payment" name="form" (ngSubmit)="f.form.valid && chargeCreditCard()" #f="ngForm" novalidate>
+
+  
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cardNumber.valid }">
+          <label for="cardNumber">Card Number</label>
+          <input type="cardNumber" class="form-control" name="cardNumber" [(ngModel)]="model.cardNumber" #cardNumber="ngModel" required />
+          <div *ngIf="f.submitted && !cardNumber.valid" class="help-block">Card number is required</div>
+      </div>
+  
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !expMonth.valid }">
+          <label for="expMonth">Exp Month</label>
+          <input type="expMonth" class="form-control" name="expMonth" [(ngModel)]="model.expMonth" #expMonth="ngModel" required />
+          <div *ngIf="f.submitted && !expMonth.valid" class="help-block">Exp Month is required</div>
+      </div>
+      
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !expYear.valid }">
+          <label for="expYear">Exp Year</label>
+          <input type="expYear" class="form-control" name="expYear" [(ngModel)]="model.expYear" #expYear="ngModel" required />
+          <div *ngIf="f.submitted && !expYear.valid" class="help-block">Exp year is required</div>
+      </div>
+      
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cvc.valid }">
+          <label for="cvc">CVC</label>
+          <input type="cvc" class="form-control" name="cvc" [(ngModel)]="model.cvc" #cvc="ngModel" required />
+          <div *ngIf="f.submitted && !cvc.valid" class="help-block">CVC is required</div>
+      </div>
+      <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">Pay Now</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      </div>
+    </form>
+
+  </div>

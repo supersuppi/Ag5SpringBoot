@@ -12,7 +12,9 @@ export class AuthGuardLogin implements CanActivate {
  
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         if (!this.authenticationService.isLoggedIn()) {
-          this.router.navigate(['/login']);
+          // not logged in so redirect to login page with the return url and return false
+         // this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+         this.router.navigate(['/login', { returnUrl: state.url }]);
           return false;
         }
         return true;

@@ -1,4 +1,6 @@
 import { Component, OnInit,OnDestroy  } from '@angular/core';
+import {Router} from "@angular/router";
+
 import { ProductRestAPIService } from '../services/productRestApi.service';
 
 import "rxjs/add/operator/takeUntil";
@@ -16,23 +18,31 @@ import { Package } from '../models/package';
 export class ProductComponent implements OnInit {
 
   private unsubscribe: Subject<void> = new Subject();
-  private observablePackages: Observable<Package[]>
+  private obsPackages: Observable<Package[]>
 
-  constructor(private productService:ProductRestAPIService) { }
+  constructor(private productService:ProductRestAPIService,private router: Router) { }
 
   ngOnInit() {
+    this.getProducts();
   }
 
   getProducts() {
 
-    this.observablePackages = this.productService.getProducts();
+    this.obsPackages = this.productService.getProducts();
 
-    this.observablePackages
+    this.obsPackages
     .takeUntil(this.unsubscribe) // to unsbuscribe when done
-    .subscribe((sPackage:Package[]) =>
+    .subscribe((sPackage:Package[]) => {
+      console.log(sPackage[0].name);
+    },
     error => { 
         console.log(error);
     });
+
+  }
+
+  buy(id:String) {
+    this.router.navigate(['/payment']);
   }
 
    //IMPORTANT: to avoid memory leak

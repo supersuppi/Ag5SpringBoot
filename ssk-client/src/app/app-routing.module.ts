@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';  // Add this
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminDashboardComponent } from './dashboard/admin/admindashboard.component';
 import { UserDashboardComponent } from './dashboard/user/userdashboard.component';
+import { PaymentComponent } from './payment/payment.component';
 
 import { AuthGuardAdmin } from './gaurds/auth.admin.gaurd';
 import { AuthGuardUser } from './gaurds/auth.user.gaurd';
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'login', pathMatch: 'full',
     component: LoginComponent
+  },
+  {
+    path: 'payment', pathMatch: 'full',
+    component: PaymentComponent,
+    canActivate: [AuthGuardLogin]
   },
   {
     path: 'dashboard',

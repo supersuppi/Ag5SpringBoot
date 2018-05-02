@@ -25,6 +25,7 @@ import { ToastNotificationService, AuthenticationService, RegistrationService } 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminDashboardComponent } from './dashboard/admin/admindashboard.component';
 import { UserDashboardComponent } from './dashboard/user/userdashboard.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserDashboardComponent } from './dashboard/user/userdashboard.component
     ProductComponent,
     DashboardComponent,
     AdminDashboardComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

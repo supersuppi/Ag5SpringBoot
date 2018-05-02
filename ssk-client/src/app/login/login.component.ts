@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   private model: any = {};
   private loading = false;
   private unsubscribe: Subject<void> = new Subject();
+  returnUrl: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
         // reset login status
         this.authenticationService.logout();
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.params['returnUrl'];
     }
 
   login() {
@@ -52,10 +55,12 @@ export class LoginComponent implements OnInit {
 
     // redirect to dashboard
     if (user.role === 'USER') {
-      this.router.navigate(['/dashboard/user']);
+     // this.router.navigate(['/dashboard/user']);
+     this.router.navigate([this.returnUrl]);
       this.loading = false;
     } else {
-      this.router.navigate(['/dashboard/admin']);
+     // this.router.navigate(['/dashboard/admin']);
+     this.router.navigate([this.returnUrl]);
       this.loading = false;
     }
    
