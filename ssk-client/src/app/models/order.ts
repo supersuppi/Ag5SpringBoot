@@ -1,14 +1,22 @@
 export class Order {
-    userID: string;
-    packageID: string;
+    userID: number;
+    packageID: number;
     payToken: string;
-    amount: string;
+    amount: number;
 
-    constructor(userID: string,packageID: string,payToken: string,amount: string) {
+    constructor(userID: number,packageID: number,payToken: string,amount: number) {
         this.userID = userID;
         this.packageID = packageID;
         this.payToken = payToken;
         this.amount = amount;
     }
+
+    get getPackageID(): number {
+        return this.packageID;
+      }
+    
+    set setPackageID(value: number) {
+        this.packageID = value;
+      }
     
 }

@@ -2,6 +2,7 @@ import { Component, OnInit,OnDestroy  } from '@angular/core';
 import {Router} from "@angular/router";
 
 import { ProductRestAPIService } from '../services/productRestApi.service';
+import { DataService } from "../services/data.service";
 
 import "rxjs/add/operator/takeUntil";
 import { Subject } from "rxjs/Subject";
@@ -20,7 +21,7 @@ export class ProductComponent implements OnInit {
   private unsubscribe: Subject<void> = new Subject();
   private obsPackages: Observable<Package[]>
 
-  constructor(private productService:ProductRestAPIService,private router: Router) { }
+  constructor(private productService:ProductRestAPIService,private router: Router,private data: DataService) { }
 
   ngOnInit() {
     this.getProducts();
@@ -41,8 +42,8 @@ export class ProductComponent implements OnInit {
 
   }
 
-  buy(id:String) {
-    this.router.navigate(['/payment']);
+  buy(ID:number) {
+    this.router.navigate(['/payment',{id: ID}]);
   }
 
    //IMPORTANT: to avoid memory leak
